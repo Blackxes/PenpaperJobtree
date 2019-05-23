@@ -11,7 +11,5 @@ import { combineReducers } from "redux";
 import jobs from "./job.reducer.js";
 
 export default combineReducers({
-	jobs,
-	counter: () => 20,
-	names: () => ["gandalf", "olaf"]
+	jobs
 });

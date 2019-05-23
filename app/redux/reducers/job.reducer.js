@@ -34,5 +34,3 @@ const jobs = ( state = initialState, { type, payload }) => {
 }
 
 export default jobs;
-
-[1, 2, 3, 4]

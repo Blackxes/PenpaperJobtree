@@ -16,11 +16,18 @@ import { takeEvery, put, call } from "@redux-saga/core/effects";
 const sagaMiddleware = createSagaMiddleware();
 const middlewares = [ sagaMiddleware ];
 
+
+const devTools = (!process.env.NODE_ENV || process.env.NODE_ENV === 'development')
+	? window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+	: () => {}
+	// : window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+
 const store = createStore(
 	rootReducer,
 	compose(
 		applyMiddleware( ...middlewares ),
-		window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+		
+		// 
 	)
 );
 

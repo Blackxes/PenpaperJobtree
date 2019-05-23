@@ -31,5 +31,10 @@ module.exports = {
 	],
 	devServer: {
 		hot: false
+	},
+	resolve: {
+        alias: {
+            'react-redux': path.join(__dirname, '/node_modules/react-redux/dist/react-redux.min')
+        }
 	}
 }
