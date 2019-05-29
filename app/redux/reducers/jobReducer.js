@@ -8,14 +8,21 @@
 
 import * as at from "../actions/actionTypes.js";
 
-const initialState = []
+const initialState = {
+	list: [],
+	idCounter: 1 // serves as an incrementing id counter
+};
 
 const jobs = ( state = initialState, { type, payload }) => {
-	console.log( state );
 	switch( type ) {
 		case at.RECEIVE_ADD_JOB:
-			console.log( payload );
-			return [ ...state, payload ]
+			return { ...state, idCounter: state.idCounter + 1, list: [...state.list, payload] };
+		break;
+		case at.RECEIVE_DELETE_JOB:
+			console.log( "delete", payload );
+		break;
+		case at.RECEIVE_EDIT_JOB:
+			console.log( "edit", payload );
 		break;
 		// case at.REMOVE_JOB:
 		// 	console.log( "remove job" );

@@ -1,0 +1,45 @@
+/*****************************************************************************************************************************************************
+
+	main css
+	
+	Author: Alexander Bassov
+	Email: blackxes@gmx.de
+	Github: https://github.com/Blackxes
+
+/****************************************************************************************************************************************************/
+/* reset */
+// * { margin: 0; padding: 0; font: 16px "Verdana"; }
+html, body { top: 0; left: 0; width: 100%; background: transparent; font: 16px "Roboto"; }
+
+ul, li { margin: 0; padding: 0; list-style-type: none; }
+ul > li { width: 100%; padding-bottom: 0.5rem; }
+ul, li { overflow: hidden; }
+
+
+h1 { font-size: 2.18rem; }
+h2 { font-size: 1.9rem; }
+h3 { font-size: 1.64rem; }
+h4 { font-size: 1.43rem; }
+h5 { font-size: 1.28rem; }
+h6 { font-size: 1.18rem; }
+h1, h2, h3, h4, h5, h6 { margin-bottom: 0.6em; color: #000; font-weight: 400; }
+h1 { width: 100%; text-align: center; }
+span, label, p { font-size: 1rem; margin-bottom: 1rem; font-weight: 400; }
+li > p { margin-bottom: 0; padding: 0.5rem 0; }
+
+[disabled] { user-select: none; pointer-events: none; filter: brightness(0.8); }
+
+/* container */
+body { background: #92a9ca; }
+form { display: inline-grid; }
+input, select, button { margin-bottom: 5px; padding: 5px 10px; }
+
+.btn, button, input[type="submit"] { background: #eee; outline: none; border: none;
+	&:hover { cursor: pointer; }
+}
+
+input, select, .btn, button, input[type="submit"] { border: 1px solid #ccc; }
+
+i, .fa, .fas { padding: 0; }
+
+#app { margin: 40px auto 20px; max-width: 720px; }

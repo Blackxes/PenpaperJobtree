@@ -6,25 +6,13 @@
  * 
 **********************************************************************************************/
 
-import React from "react";
-
-import { connect } from "react-redux";
-
-const Jobs = ({ jobs }) => {
-	return (
-		<ul>
-			{
-				jobs.map( (job, i) => {
-					return <li key={i}>{ job.name }</li>
-				})
-			}
-		</ul>
-	);
-}
+// returns a new id for a job
+export const getNewJobId = (store) => store.jobs.idCounter;
 
 //---------------------------------------------------------------------------------------------
-const mapStateToProps = (state) => ({
-	jobs: state.jobs
-});
+// returns the current submission key
+export const getSubmissionKey = (store) => {
+	console.log( "mission", store.formState );
+}
+	// store.formState.submissionKey;
 
-export default connect( mapStateToProps, null )( Jobs );

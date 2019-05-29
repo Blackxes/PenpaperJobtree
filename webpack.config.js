@@ -17,8 +17,8 @@ module.exports = {
 				use: "babel-loader"
 			},
 			{
-				test: /\.css$/,
-				use: [ "style-loader", "css-loader" ]
+				test: /\.scss$/,
+				use: [ "style-loader", "css-loader", "sass-loader" ]
 			}
 		]
 	},
@@ -30,7 +30,7 @@ module.exports = {
 		new webpack.HotModuleReplacementPlugin()
 	],
 	devServer: {
-		hot: false
+		hot: true
 	},
 	resolve: {
         alias: {

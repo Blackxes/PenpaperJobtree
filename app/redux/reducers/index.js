@@ -8,8 +8,10 @@
 
 import { combineReducers } from "redux";
 
-import jobs from "./job.reducer.js";
+import jobs from "./jobReducer.js";
+import formState from "./formStatesReducer.js";
 
 export default combineReducers({
-	jobs
+	jobs,
+	formState
 });

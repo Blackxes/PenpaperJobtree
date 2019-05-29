@@ -16,7 +16,9 @@ import { requestCreateJob } from "../redux/actions/actionCreators.js";
 const CreateJob = ({ createJob }) => {
 	return (
 		<form onSubmit={createJob} >
-			<input type="text" name="name" placeholder="job designation" />
+			<h3>Add a new job</h3>
+			<input type="text" name="name" placeholder="Job title" />
+			<input type="text" name="description" placeholder="Description" />
 			<button>Create</button>
 		</form>
 	);
