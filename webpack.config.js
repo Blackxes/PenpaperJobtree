@@ -8,7 +8,8 @@ module.exports = {
 	},
 	output: {
 		path: path.resolve( __dirname, "dist" ),
-		filename: "index.bundle.js"
+		filename: "index.bundle.js",
+		publicPath: "/"
 	},
 	module: {
 		rules: [
@@ -30,7 +31,8 @@ module.exports = {
 		new webpack.HotModuleReplacementPlugin()
 	],
 	devServer: {
-		hot: true
+		hot: false,
+		historyApiFallback: true
 	},
 	resolve: {
         alias: {

@@ -7,28 +7,23 @@
 **********************************************************************************************/
 
 import React from "react";
+
 import { connect } from "react-redux";
+import { Form, Field } from "react-final-form";
 
-import { serializeArrayAsKeyValuePairs } from "../helper.js";
-
-import { requestCreateJob } from "../redux/actions/actionCreators.js";
-
-const CreateJob = ({ createJob }) => {
-	return (
-		<form onSubmit={createJob} >
-			<h3>Add a new job</h3>
-			<input type="text" name="name" placeholder="Job title" />
-			<input type="text" name="description" placeholder="Description" />
-			<button>Create</button>
-		</form>
+const CreateJob = ({ panelVisionState, handleCreateJob }) => {
+	return !panelVisionState ? null : (
+		<Form
+			onSubmit={handleCreateJob}
+			render={({ handleSubmit }) => (
+				<form onSubmit={handleSubmit}>	
+					<Field name="title" component="input" placeholder="Job title" />
+					<Field name="description" component="input" placeholder="Job description" />
+					<button type="submit">Create</button>
+				</form>
+			)}
+		/>
 	);
 }
 
-const mapDispatchToProps = ( dispatch ) => ({
-	createJob: (evt) => {
-		evt.preventDefault();
-		return dispatch( requestCreateJob(serializeArrayAsKeyValuePairs(evt.target)) );
-	}
-});
-
-export default connect( null, mapDispatchToProps )( CreateJob );
+export default connect()( CreateJob );

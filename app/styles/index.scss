@@ -43,3 +43,24 @@ input, select, .btn, button, input[type="submit"] { border: 1px solid #ccc; }
 i, .fa, .fas { padding: 0; }
 
 #app { margin: 40px auto 20px; max-width: 720px; }
+
+.notification {
+	transition: all linear 2s;
+	margin: 0;
+	padding: 10px 20px;
+	border: 1px solid #333;
+	background: #fff;
+	&.hidden { animation: hide linear forwards 2s; }
+	&-warning { background: #ddc53c; }
+	&-error { background: #e64141; }
+	&-info { background: #77a4e9; }
+	p { margin: 0; padding: 0; }
+}
+
+@keyframes hide {
+	from { opacity: 1; }
+	to { padding: 0 20px; opacity: 0; height: 0; }
+	// 0% { opacity: 1; }
+	// 99% { opacity: 0; }
+	// 100% { margin: 0; padding: 0; height: 0; border: 0; opacity: 0; }
+}

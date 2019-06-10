@@ -8,10 +8,18 @@
 
 import { combineReducers } from "redux";
 
+import stateReducer from "./stateReducer.js";
+import panelReducer from "./panelReducer.js";
 import jobs from "./jobReducer.js";
-import formState from "./formStatesReducer.js";
+import notificationReducer from "./notificationReducer.js";
 
 export default combineReducers({
-	jobs,
-	formState
+	states: stateReducer,
+	panels: panelReducer,
+	jobs: jobs,
+	notifications: notificationReducer
 });
+
+// job relations
+// actual jobs
+// job groups

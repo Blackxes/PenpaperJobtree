@@ -11,7 +11,6 @@ import createSagaMiddleware from "redux-saga";
 
 import rootReducer from "./reducers/index.js";
 import rootSaga from "./saga/saga.js";
-import { takeEvery, put, call } from "@redux-saga/core/effects";
 
 const sagaMiddleware = createSagaMiddleware();
 const middlewares = [ sagaMiddleware ];

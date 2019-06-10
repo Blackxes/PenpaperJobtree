@@ -6,48 +6,45 @@
  * 
 **********************************************************************************************/
 
-import { all, takeEvery, takeLatest, put, select } from "redux-saga/effects";
-import * as at from "../actions/actionTypes.js";
+import { all, put, takeEvery, takeLatest, select, cancel, delay } from "redux-saga/effects";
+import * as AT from "../actions/actionTypes.js";
+import * as AC from "../actions/actionCreators.js";
+// import * as PID from "../panels.js";
+import * as SEL from "../selectors.js";
+import * as Models from "../../logic/Models.js";
 
-import { JobClass } from "../../logic/Models.js";
-import { getNewJobId, getSubmissionKey } from "../selectors.js";
+import { watchCreateNotification, watchHideNotification, watchDeleteNotification } from "./notificationSaga.js";
 
-//---------------------------------------------------------------------------------------------
-export function* requestCreateJob(action) {
-	yield takeEvery( at.REQUEST_CREATE_JOB, function* (action) {
-		const Job = new JobClass({
-			id: yield select(getNewJobId),
-			...action.payload
-		});
-
-		yield put({ type: at.RECEIVE_ADD_JOB, payload: Job });
-	});
-}
-
-//---------------------------------------------------------------------------------------------
-export function* requestHandleJobSubmission(action) {
-	yield takeEvery( at.REQUEST_HANDLE_JOBLIST_ACTION_SUBMISSION, function* (action) {
-		const formState = yield select( (store) => store.formState );
-		
+// watches the job creation
+export function* watchHandleJobCreation() {
+	yield takeLatest( AT.REQUEST_HANDLE_SUBMISSION_CREATE_JOB, function* ({ type, pl }) {
 		try {
-			switch( formState.submissionKey ) {
-				case "delete": yield put({ type: at.RECEIVE_DELETE_JOB, payload: action.payload.jobid }); break;
-				case "edit": yield put({ type: at.RECEIVE_EDIT_JOB, payload: action.payload.jobid }); break;
-				default: throw Error( "invalid submission key" );
-			}
+			if ( !pl["title"] || !pl.title.length )
+				throw new Error( "Invalid title" );
+			
+			// no duplicated job titles are allowed
+			const duplicates = yield select( SEL.getFilteredJobs, "title", pl.title.toLowerCase() );
+			
+			if ( duplicates.length )
+				throw new Error( "Duplicated title are not permitted" );
+			
+			const Job = new Models.JobClass({ ...pl, id: yield select(SEL.getNewJobId) });
+			
+			yield put( AC.requestAddJob(Job) );
 		}
-		catch( err) {
-			yield console.log( err.message );
+		catch( error ) {
+			yield put( AC.requestCreateNotification(error.message, "error", 5000 ) );
+			yield cancel();
 		}
-
-		return true;
 	});
 }
 
-
+// root saga
 export default function* rootSaga() {
 	yield all([
-		requestCreateJob(),
-		requestHandleJobSubmission()
+		watchCreateNotification(),
+		watchHideNotification(),
+		watchDeleteNotification(),
+		watchHandleJobCreation()
 	]);
 }
