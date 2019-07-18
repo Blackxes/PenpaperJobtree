@@ -30,18 +30,22 @@ class App extends React.Component {
 		
 		return (
 			<React.Fragment>
-				<div>
-					<button onClick={props.onCreateInfoNotification}>Info me!</button>
-					<button onClick={props.onCreateErrorNotification}>Error me!</button>
-				</div>
-				<div className="notifications">
+				<section>
+					<button className="info" onClick={props.onCreateInfoNotification}>Info me!</button>
+					<button className="error" onClick={props.onCreateErrorNotification}>Error me!</button>
+				</section>
+				<section>
 					<NotificationList notifications={props.notifications}/>
-				</div>
-				<div>
-					<button onClick={props.panelToggleJobCreation}>{ props.panelVisionStateJobCreation ? "Cancel job creation" : "Create Job!" }</button>
-				</div>
-				<CreateJob panelVisionState={props.panelVisionStateJobCreation} handleCreateJob={props.handleCreateJob}/>
-				<JobList jobs={props.jobs}/>
+				</section>
+				<section>
+					<div>
+						<button onClick={props.panelToggleJobCreation}>{ props.panelVisionStateJobCreation ? "Cancel job creation" : "Create Job!" }</button>
+					</div>
+					<div>
+						<CreateJob panelVisionState={props.panelVisionStateJobCreation} handleCreateJob={props.handleCreateJob}/>
+						<JobList jobs={props.jobs}/>
+					</div>
+				</section>
 			</React.Fragment>
 			// <JobList />
 			// <BrowserRouter>

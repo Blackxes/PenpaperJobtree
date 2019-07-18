@@ -7,9 +7,15 @@
 	Github: https://github.com/Blackxes
 
 /****************************************************************************************************************************************************/
+
+// variables
+$ok-color: "#37d64c";
+$error-color: "#e64141";
+$warning-color: "#ddc53c";
+$info-color: "#77a4e9";
+
 /* reset */
-// * { margin: 0; padding: 0; font: 16px "Verdana"; }
-html, body { top: 0; left: 0; width: 100%; background: transparent; font: 16px "Roboto"; }
+html, body { margin: 0; padding: 0; top: 0; left: 0; width: 100%; background: transparent; font: 16px "Roboto"; }
 
 ul, li { margin: 0; padding: 0; list-style-type: none; }
 ul > li { width: 100%; padding-bottom: 0.5rem; }
@@ -24,23 +30,28 @@ h5 { font-size: 1.28rem; }
 h6 { font-size: 1.18rem; }
 h1, h2, h3, h4, h5, h6 { margin-bottom: 0.6em; color: #000; font-weight: 400; }
 h1 { width: 100%; text-align: center; }
-span, label, p { font-size: 1rem; margin-bottom: 1rem; font-weight: 400; }
+span, label, p { margin: 0 0 1rem 0; font-size: 1rem; font-weight: 400; }
 li > p { margin-bottom: 0; padding: 0.5rem 0; }
 
 [disabled] { user-select: none; pointer-events: none; filter: brightness(0.8); }
 
 /* container */
-body { background: #92a9ca; }
+body { background: #eee; }
 form { display: inline-grid; }
-input, select, button { margin-bottom: 5px; padding: 5px 10px; }
+input, select, button { margin-bottom: 5px; padding: 5px 10px; background: #fff; }
 
-.btn, button, input[type="submit"] { background: #eee; outline: none; border: none;
-	&:hover { cursor: pointer; }
+.btn, button, input[type="submit"] { padding: 7px 14px;  background: #fff; outline: none; border-radius: 2px;
+	&:hover { cursor: pointer; background: #efefef; border-color: #bbb; }
 }
 
 input, select, .btn, button, input[type="submit"] { border: 1px solid #ccc; }
 
 i, .fa, .fas { padding: 0; }
+
+section { margin-bottom: 20px;
+	&:empty { display: none }
+	> * { margin-bottom: 10px; }
+}
 
 #app { margin: 40px auto 20px; max-width: 720px; }
 
@@ -50,17 +61,22 @@ i, .fa, .fas { padding: 0; }
 	padding: 10px 20px;
 	border: 1px solid #333;
 	background: #fff;
-	&.hidden { animation: hide linear forwards 2s; }
-	&-warning { background: #ddc53c; }
-	&-error { background: #e64141; }
-	&-info { background: #77a4e9; }
+	&.hidden { display: none; }
+	&-ok { background: $ok-color; }
+	&-warning { background: $warning-color; }
+	&-error { background: $error-color; }
+	&-info { background: $info-color; }
 	p { margin: 0; padding: 0; }
 }
 
-@keyframes hide {
-	from { opacity: 1; }
-	to { padding: 0 20px; opacity: 0; height: 0; }
-	// 0% { opacity: 1; }
-	// 99% { opacity: 0; }
-	// 100% { margin: 0; padding: 0; height: 0; border: 0; opacity: 0; }
+.container { padding: 0 20px; }
+
+.listing { margin: 0; padding: 0;
+	.list-item { margin-bottom: 10px; padding: 10px 20px; box-sizing: border-box; }
+}
+
+.panel { margin: 0; padding: 0; border: 1px solid #ccc; background: #fff; }
+
+.text {
+	&-small { font-size: 12px; }
 }

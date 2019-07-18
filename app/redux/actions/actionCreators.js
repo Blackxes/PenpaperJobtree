@@ -22,5 +22,5 @@ export const requestCreateNotification = (message, type, duration) => ({ type: A
 export const requestAddNotification = notifObject => ({ type: AT.REQUEST_ADD_NOTIFICATION, pl: notifObject });
 export const requestHideNotification = id => ({ type: AT.REQUEST_HIDE_NOTIFICATION, pl: id });
 export const receiveHideNotification = id => ({ type: AT.RECEIVE_HIDE_NOTIFICATION, pl: id });
-export const requestDeleteNotification = id => ({ type: AT.REQUEST_DELETE_NOTIFICATION, pl: id });
-export const receiveDeleteNotification = id => ({ type: AT.RECEIVE_DELETE_NOTIFICATION, pl: id });
+// export const requestDeleteNotification = id => ({ type: AT.REQUEST_DELETE_NOTIFICATION, pl: id });
+// export const receiveDeleteNotification = id => ({ type: AT.RECEIVE_DELETE_NOTIFICATION, pl: id });

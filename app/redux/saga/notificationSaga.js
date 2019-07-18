@@ -38,10 +38,11 @@ export function* watchHideNotification() {
 			
 			// correct
 			Notif = Notif.length ? Notif[0] : null;
+			
 			// not finding a notification is not an error
 			if ( !Notif )
 				throw new Error( `id '${pl}' not found` );
-				
+			
 			yield delay( Notif.duration );
 			yield put( AC.receiveHideNotification(pl) );
 		});
